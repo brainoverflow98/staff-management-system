@@ -1,0 +1,185 @@
+﻿@using PersonelTakip.Extensions
+@using System;
+@using System.Text.RegularExpressions;
+@{
+    List<Unvan> Unvanlar = ViewBag.Unvanlar;
+    List<Hesaplama> Hesaplamalar = ViewBag.Hesaplamalar;
+    List<SecenekListesi> Secenekler = ViewBag.Secenekler;
+}
+<script>
+
+    var MonthlyTallyTableNo = "@(TableConstants.MonthlyTallyTableNo.ToString())";
+    var MonthSummaryTableNo = "@(TableConstants.MonthSummaryTableNo.ToString())";
+
+    var MonthlyTallyTableGorevCol;
+
+    @foreach (var hesaplama in Hesaplamalar)
+    {
+        var variableName = Regex.Replace(hesaplama.Baslik, @"\s+", "").ToEnglishChars();
+
+        @: var MonthlyTallyTable@(variableName)Col;
+        if (hesaplama.OzetGoster)
+        {
+            @: var MonthSummaryTable@(variableName)Col;
+        }
+    }
+
+
+    @foreach (var unvan in Unvanlar)
+    {
+        var variableName = Regex.Replace(unvan.UnvanAdi, @"\s+", "").ToEnglishChars();
+        @: var MonthSummaryTable@(variableName)Row;
+    }
+
+
+
+    function updateConstants() {
+        
+        var table_no = MonthlyTallyTableNo;
+        var sum_table_no = MonthSummaryTableNo;
+        MonthlyTallyTableGorevCol = getColNo(table_no, "@(TableConstants.Gorev.Uid)");
+
+        @foreach (var hesaplama in Hesaplamalar)
+        {
+            var variableName = Regex.Replace(hesaplama.Baslik, @"\s+", "").ToEnglishChars();
+            var cellId = hesaplama.Id;
+            @:MonthlyTallyTable@(variableName)Col = getColNo(table_no, "@(cellId)");
+            if (hesaplama.OzetGoster)
+            {
+                @:MonthSummaryTable@(variableName)Col = getColNo(sum_table_no, "@(cellId)");
+            }
+        }
+
+        @foreach (var unvan in Unvanlar)
+        {
+            var variableName = Regex.Replace(unvan.UnvanAdi, @"\s+", "").ToEnglishChars();
+            var cellId = unvan.Id;
+            @:MonthSummaryTable@(variableName)Row = getRowNo(sum_table_no, "@(cellId)");
+        }
+
+        MonthSummaryTableToplamRow = getRowNo(sum_table_no, "@(TableConstants.Toplam.Uid)");
+    }
+
+
+    function getDutyId(duty) {
+        switch (duty) {
+
+        @foreach (var unvan in Unvanlar)
+        {
+            var variableName = Regex.Replace(unvan.UnvanAdi, @"\s+", "").ToEnglishChars();
+
+            @: case "@Html.Raw(unvan.UnvanAdi)":
+            @: return @unvan.Id; break;
+        }
+
+        }
+    }
+
+    function getMonthSummaryTableDutyRow(dutyId) {
+        switch (dutyId) {
+
+        @foreach (var unvan in Unvanlar)
+        {
+            var variableName = Regex.Replace(unvan.UnvanAdi, @"\s+", "").ToEnglishChars();
+
+            @: case @unvan.Id:
+            @: return MonthSummaryTable@(variableName)Row; break;
+        }
+
+        }
+    }
+
+
+    function analyseChange(cell, value) {
+        var select = cell.children[0];
+        var prev_value = parseInt($(select).val());
+
+        if (value == prev_value)
+            return;
+
+        var row_no = cell.id.split("-")[3];
+        var col_no = cell.id.split("-")[5];
+        var dutyStr = cellGetValue(MonthlyTallyTableNo, row_no, MonthlyTallyTableGorevCol);
+        var dutyId = getDutyId(dutyStr);
+
+        var table_no = MonthlyTallyTableNo;
+        var sum_table_no = MonthSummaryTableNo;
+        var duty_row = getMonthSummaryTableDutyRow(dutyId);
+        var pv = prev_value;
+        var v = value;
+
+        $(select).val(value);
+        var RowObj = TABLES[table_no].rows[row_no];
+        var ColObj = RowObj.columns[col_no];
+        ColObj.value = value;
+        ColObj.changed = true;
+        RowObj.changed = true;
+        
+        var option = TABLES[table_no].optionGroups[0][value];
+        var color = option.color;
+        cell.style.backgroundColor = color;
+        cell.classList.add("changed");        
+        
+
+        @foreach (var secenek in Secenekler)
+        {
+            var formuller = Hesaplamalar.Where(h => h.HesaplamaSecenekleri.Select(hs => hs.SecenekId).Contains(secenek.Id)).ToList();
+            <text>
+            if (v == @(secenek.Id.ToString())) {
+                if (pv != @(secenek.Id.ToString())) {
+                    @foreach (var formul in formuller)
+                    {
+                        var ifStatement = "";
+                        bool first = true;
+                        foreach (var unvan in formul.HesaplamaUnvanlari)
+                        {
+                            if (!first) { ifStatement += " || dutyId==" + unvan.UnvanId.ToString(); } else { ifStatement += "dutyId==" + unvan.UnvanId.ToString(); first = false; }
+                        }
+                        if (ifStatement == "") { ifStatement = "true";}
+                        @:if ( @(ifStatement) ) {
+                        var variableName = Regex.Replace(formul.Baslik, @"\s+", "").ToEnglishChars();
+                        var count = formul.HesaplamaSecenekleri.Where(hs => hs.SecenekId == secenek.Id).Select(hs=>hs.Katsayi).FirstOrDefault();
+                        @:var added_amount = cellAddValue(table_no, row_no, MonthlyTallyTable@(variableName)Col, @(count), @(formul.SaymaLimiti));
+
+                        @if(formul.OzetGoster) { 
+                            <text>                        
+                        cellAddValue(sum_table_no, duty_row, MonthSummaryTable@(variableName)Col, @(count), 0, added_amount);
+                        cellAddValue(sum_table_no, MonthSummaryTableToplamRow, MonthSummaryTable@(variableName)Col, @(count), 0, added_amount);                    
+                            </text>
+                        }
+                        @:}
+                    }
+                }
+
+            } else {
+                if (pv == @(secenek.Id.ToString())) {
+                    @foreach (var formul in formuller)
+                    {
+                        var ifStatement = "";
+                        bool first = true;
+                        foreach (var unvan in formul.HesaplamaUnvanlari)
+                        {
+                            if (!first) { ifStatement += " || dutyId==" + unvan.UnvanId.ToString(); } else { ifStatement += "dutyId==" + unvan.UnvanId.ToString(); first = false; }
+                        }
+                        if (ifStatement == "") { ifStatement = "true";}
+                        @:if ( @(ifStatement) ) {
+                        var variableName = Regex.Replace(formul.Baslik, @"\s+", "").ToEnglishChars();
+                        var count = formul.HesaplamaSecenekleri.Where(hs => hs.SecenekId == secenek.Id).Select(hs=>hs.Katsayi).FirstOrDefault();
+                        @:var added_amount = cellAddValue(table_no, row_no, MonthlyTallyTable@(variableName)Col, -@(count), @(formul.SaymaLimiti));
+
+                        @if(formul.OzetGoster) { 
+                            <text>                        
+                        cellAddValue(sum_table_no, duty_row, MonthSummaryTable@(variableName)Col, -@(count), 0, added_amount);
+                        cellAddValue(sum_table_no, MonthSummaryTableToplamRow, MonthSummaryTable@(variableName)Col, -@(count), 0, added_amount);                  
+                            </text>
+                        }
+                        @:}
+                    }
+                }
+            }
+            </text>
+        }
+    }
+
+
+</script>

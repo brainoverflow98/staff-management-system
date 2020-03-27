@@ -1,0 +1,50 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Kullanıcı Oluştur";
+    Layout = "_Layout";
+}
+
+
+<div class="d-flex justify-content-center align-items-center">
+    <h2>@ViewData["Title"]</h2>
+</div>
+
+<div class="d-flex justify-content-center align-items-center">
+    <div asp-validation-summary="All" class="text-danger"></div>
+</div>
+
+<div class="d-flex justify-content-center align-items-center">
+
+    <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+        <hr />
+
+        <div class="form-group">
+            <input asp-for="username" class="form-control" placeholder="Kullanıcı adı" />
+            <span asp-validation-for="username" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Password" placeholder="Şifreyi giriniz" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="ConfirmPassword" placeholder="Şifreyi tekrar giriniz" class="form-control" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <select asp-for="Role" placeholder="Rol Seçiniz" class="form-control">
+                <option value="">Rol Seçiniz</option>
+                @foreach (var role in (List<ApplicationRole>)ViewBag.roles)
+                {
+                    @:<option value=@role.Id>@role.Name</option>
+                }
+            </select>
+
+
+            <span asp-validation-for="Role" class="text-danger"></span>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
+</div>
+

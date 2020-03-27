@@ -1,0 +1,114 @@
+﻿@using PersonelTakip.Extensions
+@using System;
+@using System.Text.RegularExpressions;
+@{
+    List<Unvan> Unvanlar = ViewBag.Unvanlar;
+    List<Hesaplama> Hesaplamalar = ViewBag.Hesaplamalar;
+    List<SecenekListesi> Secenekler = ViewBag.Secenekler;
+}
+<script>
+
+    var AnnualTallyTableNo = "@(TableConstants.AnnualTallyTableNo.ToString())";   
+    
+
+    @foreach (var hesaplama in Hesaplamalar)
+    {
+        var variableName = Regex.Replace(hesaplama.Baslik, @"\s+", "").ToEnglishChars();
+
+        @: var AnnualTallyTable@(variableName)Col;        
+    }
+
+
+    function updateConstants() {
+
+        var table_no = AnnualTallyTableNo;          
+
+        @foreach (var hesaplama in Hesaplamalar)
+        {
+            var variableName = Regex.Replace(hesaplama.Baslik, @"\s+", "").ToEnglishChars();
+            var cellId = hesaplama.Id;
+            @:AnnualTallyTable@(variableName)Col = getColNo(table_no, "@(cellId)");            
+        }
+        
+    }
+    
+
+
+    function analyseChange(cell, value) {
+        var select = cell.children[0];
+        var prev_value = parseInt($(select).val());
+
+        if (value == prev_value)
+            return;
+
+        var row_no = cell.id.split("-")[3];
+        var col_no = cell.id.split("-")[5];
+
+        $(select).val(value);
+        var table_no = AnnualTallyTableNo;
+        var dutyId = document.getElementById("GorevId").value;        
+        var pv = prev_value;
+        var v = value;
+
+
+        var RowObj = TABLES[table_no].rows[row_no];
+        var ColObj = RowObj.columns[col_no];
+        ColObj.value = value;
+        ColObj.changed = true;
+        RowObj.changed = true;
+
+        var optionGroup = ColObj.optionGroup;
+        var option = TABLES[table_no].optionGroups[0][value];
+        var color = option.color;
+        cell.style.backgroundColor = color;
+        cell.classList.add("changed");
+
+
+        @foreach (var secenek in Secenekler)
+        {
+            var formuller = Hesaplamalar.Where(h => h.HesaplamaSecenekleri.Select(hs => hs.SecenekId).Contains(secenek.Id)).ToList();
+            <text>
+            if (v == @(secenek.Id.ToString())) {
+                if (pv != @(secenek.Id.ToString())) {
+                    @foreach (var formul in formuller)
+                    {
+                        var ifStatement = "";
+                        bool first = true;
+                        foreach (var unvan in formul.HesaplamaUnvanlari)
+                        {
+                            if (!first) { ifStatement += " || dutyId==" + unvan.UnvanId.ToString(); } else { ifStatement += "dutyId==" + unvan.UnvanId.ToString(); first = false; }
+                        }
+                        if (ifStatement == "") { ifStatement = "true";}
+                        @:if ( @(ifStatement) ) {
+                        var variableName = Regex.Replace(formul.Baslik, @"\s+", "").ToEnglishChars();
+                        var count = formul.HesaplamaSecenekleri.Where(hs => hs.SecenekId == secenek.Id).Select(hs=>hs.Katsayi).FirstOrDefault();
+                        @:cellAddValue(table_no, row_no, AnnualTallyTable@(variableName)Col, @(count), @(formul.SaymaLimiti));                        
+                        @:}
+                    }
+                }
+
+            } else {
+                if (pv == @(secenek.Id.ToString())) {
+                    @foreach (var formul in formuller)
+                    {
+                        var ifStatement = "";
+                        bool first = true;
+                        foreach (var unvan in formul.HesaplamaUnvanlari)
+                        {
+                            if (!first) { ifStatement += " || dutyId==" + unvan.UnvanId.ToString(); } else { ifStatement += "dutyId==" + unvan.UnvanId.ToString(); first = false; }
+                        }
+                        if (ifStatement == "") { ifStatement = "true";}
+                        @:if ( @(ifStatement) ) {
+                        var variableName = Regex.Replace(formul.Baslik, @"\s+", "").ToEnglishChars();
+                        var count = formul.HesaplamaSecenekleri.Where(hs => hs.SecenekId == secenek.Id).Select(hs=>hs.Katsayi).FirstOrDefault();
+                        @:cellAddValue(table_no, row_no, AnnualTallyTable@(variableName)Col, -@(count), @(formul.SaymaLimiti));                        
+                        @:}
+                    }
+                }
+            }
+            </text>
+        }
+    }
+
+
+</script>

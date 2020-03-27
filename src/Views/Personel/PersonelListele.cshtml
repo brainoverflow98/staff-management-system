@@ -1,0 +1,120 @@
+﻿@{
+    var tableNo = TableConstants.EmployeeListTableNo.ToString();
+    var sumTableNo = TableConstants.EmployeeListSummaryTableNo.ToString();
+}
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+    <select table-no="@tableNo" class="search-by form-control p-1">
+        <option value="0" selected>Arama Kriteri Seç</option>
+        @foreach (var header in TableConstants.PersonelListHeader)
+        {
+            <option value="@(header.Uid)">@(header.Text)</option>
+        }
+    </select>
+    <input table-no="@tableNo" class="search-box form-control p-2" type="text" placeholder="Arama" />
+
+    <select table-no="@tableNo" class="sort-by form-control p-1">
+        <option value="0" selected>Sıralama Kriteri Seç</option>
+        @foreach (var header in TableConstants.PersonelListHeader)
+        {
+            <option value="@(header.Uid)">@(header.Text)</option>
+        }
+    </select>
+    <select table-no="@tableNo" class="sort-order form-control p-1">
+        <option value="0">Azalan</option>
+        <option value="1" selected>Artan</option>
+    </select>
+
+</div>
+<div id="employee-list-scroll-window" class="">
+
+    <table id="employee-list-table" table-no="@tableNo" wb-id="Personel Listesi" ws-id="Personel Bilgileri" class="table table-sm table-hover">
+        <thead id="employee-list-table-header">
+
+        </thead>
+        <tbody id="employee-list-table-body"></tbody>
+
+    </table>
+<div class="control-menu d-flex justify-content-center align-items-center">
+    
+    <button table-no="@tableNo" class="prev-page btn btn-primary">&#8678;</button>
+    <div table-no="@tableNo" class="page-info"><span>0</span>/<span>0</span></div>
+    <button table-no="@tableNo" class="next-page btn btn-primary">&#8680;</button>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div id="distribution-scroll-window" class="collapse">
+        <table id="distribution-table" table-no="@sumTableNo" wb-id="Personel Listesi" ws-id="Görev Dağılımı" class="table table-sm table-bordered">
+            <thead id="distribution-table-header">
+
+            </thead>
+            <tbody id="distribution-table-body"></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="control-menu d-flex justify-content-center">
+    <button class="btn btn-primary col-3" type="button" data-toggle="collapse" data-target="#distribution-scroll-window" aria-expanded="false" aria-controls="glossary-scroll-window">
+        Personel Görev Dağılımı
+    </button>
+</div>
+
+@if (User.IsInRole("SistemYöneticisi") || User.IsInRole("ÜstDüzeyYetkili") || User.IsInRole("Yetkili"))
+{
+    <div class="control-menu d-flex justify-content-center">
+        <button class="btn btn-secondary col-3" id="load-from-excel">Toplu Personel Ekle</button>
+    </div>
+    <form id="excel-form" method="post" enctype="multipart/form-data" action="/Personel/TopluEkle">
+        <input type="file" id="excel-file" name="excel" class="form-control" hidden />
+    </form>
+}
+
+<div class="control-menu d-flex justify-content-center">
+
+    <select id="filter" class="form-control col-2">
+        <option value="current">Güncel Personel</option>
+        <option value="old">Eski Personel</option>
+        <option value="all">Tüm Personel</option>
+    </select>
+
+    <button class="btn btn-primary refresh" table-no="@tableNo">Yenile</button>
+    <button class="btn btn-secondary wb-download" wb-id="Personel Listesi">İndir</button>
+</div>
+
+
+
+
+@section Scripts {
+
+    <script src="~/js/employee-list-scripts.js"></script>
+
+    <script>
+        var EmployeeListTableNo = "@tableNo";
+        var EmployeeListSummaryTableNo = "@sumTableNo";
+
+        $('#load-from-excel').on('click', function (e) {
+            e.preventDefault();
+            $('#excel-file').trigger("click");
+        });
+
+        $('#excel-file').on('change', function () {
+            var fileExtension = ['xlsx'];
+            var filename = $(this).val();
+            if (filename.length == 0) {
+                alert("Lütfen bir dosya seçin.");
+                return false;
+            }
+            else {
+                var extension = filename.replace(/^.*\./, '');
+                if ($.inArray(extension, fileExtension) == -1) {
+                    alert("Lütfen '.xlsx' uzantılı bir dosya seçin.");
+                    return false;
+                }
+            }
+            $('#excel-form').submit();
+        });
+
+    </script>
+}

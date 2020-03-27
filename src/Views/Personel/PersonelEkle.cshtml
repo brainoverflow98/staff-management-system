@@ -1,0 +1,140 @@
+﻿@model PersonelTakip.Controllers.Resources.PersonelEkleResource
+
+
+<form method="post" enctype="multipart/form-data">
+
+
+    <div id="employee-info" class="container">
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-3">
+                <label></label>
+                <img id="employee-photo" style="width:100%;height:15em"  src="~/images/personel.png" alt="Personel Fotoğrafı">
+                <span asp-validation-for="PersonelFotgrafi" class="text-danger"> Fotoğraf 1 mbden az olmalıdır türü jpeg ya da png<</span>
+            </div>
+            <div class="form-group col-8">
+                <div class="row">
+                    <div class="form-group col-4">
+                        <label asp-for="AdSoyad">Ad Soyad</label>
+                        <input asp-for="AdSoyad" class="form-control form-control-sm" />
+                        <span asp-validation-for="AdSoyad" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="TcNo">TCKN</label>
+                        <input asp-for="TcNo" class="form-control form-control-sm" />
+                        <span asp-validation-for="TcNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="DogumTarihi">Doğum Tarihi</label>
+                        <input asp-for="DogumTarihi" class="form-control form-control-sm" />
+                        <span asp-validation-for="DogumTarihi" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="GorevId">Görevi </label>
+                        <select asp-for="GorevId" asp-items="ViewBag.UnvanSelectList" class="form-control form-control-sm"></select>
+                        <span asp-validation-for="GorevId" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="Telefon">Telefon</label>
+                        <input asp-for="Telefon" class="form-control form-control-sm" />
+                        <span asp-validation-for="Telefon" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="KanGrubu">Kan Grubu</label>
+                        <select asp-for="KanGrubu" asp-items="ViewBag.KanGrubuSelectList" class="form-control form-control-sm"></select>
+                        <span asp-validation-for="KanGrubu" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="Adres"></label>
+                        <textarea asp-for="Adres" form-id="1" data-for="submit" class="form-control form-control-sm" ></textarea>
+                        <span asp-validation-for="Adres" class="text-danger"></span>
+
+
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="SicilNo">Sicil No</label>
+                        <input asp-for="SicilNo" class="form-control form-control-sm" />
+                        <span asp-validation-for="SicilNo" class="text-danger"></span>
+
+
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="IseBaslamaTarihi">İşe Başlama Tarihi</label>
+                        <input asp-for="IseBaslamaTarihi" class="form-control form-control-sm" />
+                        <span asp-validation-for="IseBaslamaTarihi" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="IstenAyrilmaTarihi">İşten Ayrılma Tarihi</label>
+                        <input asp-for="IstenAyrilmaTarihi" class="form-control form-control-sm" />
+                        <span asp-validation-for="IstenAyrilmaTarihi" class="text-danger"></span>
+
+                    </div>
+                    <input asp-for="PersonelFotgrafi" id="file-input" hidden />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button id="upload-photo" class="btn btn-primary col-2">Fotoğraf Yükle</button>
+        <button class="btn btn-success col-2" type="submit">Kaydet</button>
+    </div>    
+</form>
+
+
+
+@section Scripts {    
+
+<script>
+        $.validator.setDefaults({
+            ignore: [],
+            // any other default options and/or rules
+        });
+
+        $('#load-from-excel').on('click', function (e) {
+            e.preventDefault();
+            $('#excel-file').trigger("click");
+        });
+
+        $('#excel-file').on('change', function () {
+            var fileExtension = ['xlsx'];
+            var filename = $(this).val();
+            if (filename.length == 0) {
+                alert("Lütfen bir dosya seçin.");
+                return false;
+            }
+            else {
+                var extension = filename.replace(/^.*\./, '');
+                if ($.inArray(extension, fileExtension) == -1) {
+                    alert("Lütfen '.xlsx' uzantılı bir dosya seçin.");
+                    return false;
+                }
+            }
+            $('#excel-form').submit();
+        });
+
+        $('#upload-photo').on('click', function (e) {
+            e.preventDefault();
+            $('#file-input').trigger("click");
+        });
+
+        $('#file-input').on('change', function () {
+            var input = this;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#employee-photo')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        });
+</script>
+}

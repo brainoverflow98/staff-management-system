@@ -1,0 +1,235 @@
+﻿@using System.Globalization
+@{
+    List<Unvan> Unvanlar = ViewBag.Unvanlar;
+    List<Hesaplama> Hesaplamalar = ViewBag.Hesaplamalar;
+    List<SecenekListesi> Secenekler = ViewBag.Secenekler;
+
+    var tableNo = TableConstants.MonthlyTallyTableNo;
+    var sumTableNo = TableConstants.MonthSummaryTableNo;
+}
+<style>
+ @@media print{@@page {size: landscape}}
+     th{
+        padding:.2rem !important;
+        font-size:75% !important;
+     }
+
+     td{
+        padding:.2rem !important;
+        font-size:100% !important;
+    }
+    table { page-break-inside:auto ; width:100%; }
+    tr{ page-break-inside:avoid; page-break-after:auto ;}*/
+</style>
+
+<div class="d-flex justify-content-between align-items-center">
+
+    <select table-no="1" class="search-by form-control p-1">
+        <option value="0" selected>Arama Kriteri Seç</option>
+        @foreach (var header in TableConstants.HeaderList)
+        {
+            <option value="@(header.Uid)">@(header.Text)</option>
+        }
+    </select>
+    <input table-no="1" class="search-box form-control p-2" type="text" placeholder="Arama" />
+
+    <select table-no="1" class="sort-by form-control p-1">
+        <option value="0" selected>Sıralama Kriteri Seç</option>
+        @foreach (var header in TableConstants.HeaderList)
+        {
+            <option value="@(header.Uid)">@(header.Text)</option>
+        }
+        @foreach (var hesaplama in Hesaplamalar)
+        {
+            <option value="@(hesaplama.Id)">@(hesaplama.Baslik)</option>
+        }
+    </select>
+    <select table-no="1" class="sort-order form-control p-1">
+        <option value="0">Azalan</option>
+        <option value="1" selected>Artan</option>
+    </select>
+
+</div>
+
+<div id="monthly-tally-scroll-window" class="contex-menu">
+    <div table-no="1" class="popup-menu dropdown-menu dropdown-menu-sm">
+        <h1 class="dropdown-header">Gün Seç</h1>
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item" value="1">Pazartesi</button>
+        <button class="dropdown-item" value="2">Salı</button>
+        <button class="dropdown-item" value="3">Çarşamba</button>
+        <button class="dropdown-item" value="4">Perşembe</button>
+        <button class="dropdown-item" value="5">Cuma</button>
+        <button class="dropdown-item" value="6">Cumartesi</button>
+        <button class="dropdown-item" value="0">Pazar</button>
+    </div>
+    <table id="monthly-tally-table" table-no="1" wb-id="Aylık Puantaj Cetveli" ws-id="Aylık Puantaj" class="table table-sm table-bordered selectable-table">
+        <thead id="monthly-tally-table-header">
+
+        </thead>
+        <tbody id="monthly-tally-table-body"></tbody>
+
+    </table>
+</div>
+
+<div class="control-menu d-flex justify-content-center align-items-center">
+    <button table-no="1" class="prev-page btn btn-primary">&#8678;</button>
+    <div table-no="1" class="page-info"><span>0</span>/<span>0</span></div>
+    <button table-no="1" class="next-page btn btn-primary">&#8680;</button>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div id="glossary-scroll-window" class="collapse">
+        <table id="glossary-table" class="table table-sm table-bordered">
+            <thead id="month-summary-table-header">
+                <tr class="thead-dark">
+                    @foreach (var secenek in Secenekler)
+                    {
+                        <th>@(secenek.Deger)</th>
+                    }
+                </tr>
+            </thead>
+            <tbody id="glossary-table-body">
+                <tr>
+                    @foreach (var secenek in Secenekler)
+                    {
+                        <td><span class="vertical">@(secenek.Aciklama)</span></td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="d-flex justify-content-center">
+    <div id="month-summary-scroll-window" class="collapse">
+        <table id="month-summary-table" table-no="2" wb-id="Aylık Puantaj Cetveli" ws-id="Aylık Puantaj Özeti" class="table table-sm table-bordered">
+            <thead id="month-summary-table-header">
+
+            </thead>
+            <tbody id="month-summary-table-body"></tbody>
+        </table>
+    </div>
+</div>
+<div class="control-menu d-flex justify-content-center">
+    <button class="btn btn-primary col-3" type="button" data-toggle="collapse" data-target="#glossary-scroll-window" aria-expanded="false" aria-controls="glossary-scroll-window">
+        Açıklamalar
+    </button>
+</div>
+<div class="control-menu d-flex justify-content-center">
+    <button class="btn btn-primary col-3" type="button" data-toggle="collapse" data-target="#month-summary-scroll-window" aria-expanded="false" aria-controls="month-summary-scroll-window">
+        Aylık Puantaj Özeti
+    </button>
+</div>
+
+@if (User.IsInRole("SistemYöneticisi") || User.IsInRole("ÜstDüzeyYetkili"))
+{
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-secondary col-3" id="load-from-excel">Aylık Puantaj Geçmişi Yükle</button>
+    </div>
+    <form id="excel-form" method="post" enctype="multipart/form-data" action="/Puantaj/AylikPuantajGecmisi">
+        <input name="year" id="excel-year" hidden />
+        <input name="month" id="excel-month" hidden />
+        <input type="file" id="excel-file" name="excel" class="form-control" hidden />
+    </form>
+}
+
+@{var today = DateTime.Today; var trCulture = new CultureInfo("tr-TR", true).DateTimeFormat;}
+<div class="control-menu d-flex justify-content-center">
+    <select class="form-control col-1 month" table-no="1">
+        @for (var i = 1; i <= 12; i++)
+        {
+            var month = trCulture.GetMonthName(i);
+            if (i == today.Month)
+            {
+                <option value="@i" selected>@month</option>
+            }
+            else
+            {
+                <option value="@i">@month</option>
+            }
+
+        }
+    </select>
+
+
+    <select class="form-control col-1 year" table-no="1">
+        @for (var i = 2011; i <= today.Year + 1; i++)
+        {
+            @if (i == today.Year)
+            {
+                <option value="@(i)" selected>@(i)</option>
+            }
+            else
+            {
+                <option value="@(i)">@(i)</option>
+            }
+        }
+    </select>
+
+    <button class="btn btn-primary refresh" table-no="1">Yenile</button>
+    @if (User.IsInRole("SistemYöneticisi") || User.IsInRole("ÜstDüzeyYetkili") || User.IsInRole("Yetkili"))
+    {
+        <button class="btn btn-success save" table-no="1">Kaydet</button>
+    }
+    <button class="btn btn-secondary wb-download" wb-id="Aylık Puantaj Cetveli">Aylık Puantaj İndir</button>
+    <button class="btn btn-secondary" id="aylikOzetIndir" >Aylık Özet İndir</button>
+
+</div>
+
+
+
+@section Scripts {    
+
+    <script src="~/js/monthly-tally-script.js"></script>
+
+    <partial name="MonthlyTallyScripts" />
+    <script>
+        function add_cell_to_sheet(worksheet, address, value) {
+	/* cell object */
+	var cell = {t:'?', v:value};
+
+	/* assign type */
+	if(typeof value == "string") cell.t = 's'; // string
+	else if(typeof value == "number") cell.t = 'n'; // number
+	else if(value === true || value === false) cell.t = 'b'; // boolean
+	else if(value instanceof Date) cell.t = 'd';
+	else throw new Error("cannot store value");
+
+	/* add to worksheet, overwriting a cell if it exists */
+	worksheet[address] = cell;
+
+	/* find the cell range */
+	var range = XLSX.utils.decode_range(worksheet['!ref']);
+	var addr = XLSX.utils.decode_cell(address);
+
+	/* extend the range to include the new cell */
+	if(range.s.c > addr.c) range.s.c = addr.c;
+	if(range.s.r > addr.r) range.s.r = addr.r;
+	if(range.e.c < addr.c) range.e.c = addr.c;
+	if(range.e.r < addr.r) range.e.r = addr.r;
+
+	/* update range */
+	worksheet['!ref'] = XLSX.utils.encode_range(range);
+}
+
+
+
+
+        $('#aylikOzetIndir').on('click', function (e) {
+
+	var wb = XLSX.utils.table_to_book(document.getElementById("month-summary-table"), {sheet:"Özet"});
+	var tarihHucre = document.getElementById("t-1-h-c-4").children[0].textContent
+
+    var tarih = tarihHucre.substr(3,tarihHucre.length)
+    add_cell_to_sheet(wb.Sheets["Özet"],"A1",tarih)
+    var wbout = XLSX.write(wb, {bookType:'xlsx', bookSST:true, type: 'binary'});
+	function s2ab(s) {
+									var buf = new ArrayBuffer(s.length);
+									var view = new Uint8Array(buf);
+									for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+									return buf;
+	}
+	saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), "Aylık Özet.xlsx");
+})
+    </script>
+}

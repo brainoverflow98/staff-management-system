@@ -1,0 +1,155 @@
+2019-07-28 08:49:54.643 +03:00 [WRN] User 2b8d39b5-60d2-49d9-bb07-71008288b0f7 is already in role SistemYöneticisi.
+2019-07-28 08:50:02.362 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.HomeController.Index (PersonelTakip)'
+2019-07-28 08:50:02.374 +03:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing action PersonelTakip.Controllers.HomeController.Index (PersonelTakip)
+2019-07-28 08:50:02.400 +03:00 [INF] Authorization failed.
+2019-07-28 08:50:02.407 +03:00 [INF] Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2019-07-28 08:50:02.417 +03:00 [INF] Executing ChallengeResult with authentication schemes ([]).
+2019-07-28 08:50:02.431 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2019-07-28 08:50:02.435 +03:00 [INF] Executed action PersonelTakip.Controllers.HomeController.Index (PersonelTakip) in 53.0619ms
+2019-07-28 08:50:02.438 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.HomeController.Index (PersonelTakip)'
+2019-07-28 08:50:02.480 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.AccountController.Login (PersonelTakip)'
+2019-07-28 08:50:02.509 +03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing action PersonelTakip.Controllers.AccountController.Login (PersonelTakip)
+2019-07-28 08:50:02.541 +03:00 [INF] Executing action method PersonelTakip.Controllers.AccountController.Login (PersonelTakip) with arguments (["/"]) - Validation state: "Valid"
+2019-07-28 08:50:02.557 +03:00 [INF] AuthenticationScheme: Identity.External signed out.
+2019-07-28 08:50:02.560 +03:00 [INF] Executed action method PersonelTakip.Controllers.AccountController.Login (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.ViewResult in 13.3609ms.
+2019-07-28 08:50:02.580 +03:00 [INF] Executing ViewResult, running view Login.
+2019-07-28 08:50:02.797 +03:00 [INF] Executed ViewResult - view Login executed in 230.8981ms.
+2019-07-28 08:50:02.798 +03:00 [INF] Executed action PersonelTakip.Controllers.AccountController.Login (PersonelTakip) in 289.3365ms
+2019-07-28 08:50:02.798 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.AccountController.Login (PersonelTakip)'
+2019-07-28 08:50:02.903 +03:00 [INF] Sending file. Request path: '/css/signin.css'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/css/signin.css'
+2019-07-28 08:50:02.903 +03:00 [INF] Sending file. Request path: '/js/popper.min.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/js/popper.min.js'
+2019-07-28 08:50:02.910 +03:00 [INF] Sending file. Request path: '/js/bootstrap.min.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/js/bootstrap.min.js'
+2019-07-28 08:50:02.915 +03:00 [INF] Sending file. Request path: '/lib/jquery-validation/dist/jquery.validate.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/lib/jquery-validation/dist/jquery.validate.js'
+2019-07-28 08:50:02.919 +03:00 [INF] Sending file. Request path: '/css/bootstrap.min.css'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/css/bootstrap.min.css'
+2019-07-28 08:50:02.922 +03:00 [INF] Sending file. Request path: '/images/KurumsalLogo.png'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/images/KurumsalLogo.png'
+2019-07-28 08:50:02.923 +03:00 [INF] Sending file. Request path: '/js/jquery-3.2.1.min.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/js/jquery-3.2.1.min.js'
+2019-07-28 08:50:02.924 +03:00 [INF] Sending file. Request path: '/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js'
+2019-07-28 08:50:03.228 +03:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/favicon.ico'
+2019-07-28 08:50:16.444 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.AccountController.Login (PersonelTakip)'
+2019-07-28 08:50:16.453 +03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing action PersonelTakip.Controllers.AccountController.Login (PersonelTakip)
+2019-07-28 08:50:16.496 +03:00 [INF] Executing action method PersonelTakip.Controllers.AccountController.Login (PersonelTakip) with arguments (["PersonelTakip.Models.AccountViewModels.LoginViewModel","/"]) - Validation state: "Valid"
+2019-07-28 08:50:16.848 +03:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2019-07-28 08:50:16.854 +03:00 [INF] Executed action method PersonelTakip.Controllers.AccountController.Login (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 358.0785ms.
+2019-07-28 08:50:16.860 +03:00 [INF] Executing RedirectResult, redirecting to /.
+2019-07-28 08:50:16.862 +03:00 [INF] Executed action PersonelTakip.Controllers.AccountController.Login (PersonelTakip) in 409.5976ms
+2019-07-28 08:50:16.864 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.AccountController.Login (PersonelTakip)'
+2019-07-28 08:50:16.877 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.HomeController.Index (PersonelTakip)'
+2019-07-28 08:50:16.877 +03:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing action PersonelTakip.Controllers.HomeController.Index (PersonelTakip)
+2019-07-28 08:50:16.878 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:16.881 +03:00 [INF] Executing action method PersonelTakip.Controllers.HomeController.Index (PersonelTakip) - Validation state: "Valid"
+2019-07-28 08:50:16.881 +03:00 [INF] Executed action method PersonelTakip.Controllers.HomeController.Index (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.19920000000000002ms.
+2019-07-28 08:50:16.881 +03:00 [INF] Executing RedirectResult, redirecting to /Personel/Liste.
+2019-07-28 08:50:16.881 +03:00 [INF] Executed action PersonelTakip.Controllers.HomeController.Index (PersonelTakip) in 4.0251ms
+2019-07-28 08:50:16.881 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.HomeController.Index (PersonelTakip)'
+2019-07-28 08:50:16.886 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip)'
+2019-07-28 08:50:16.887 +03:00 [INF] Route matched with {action = "PersonelListele", controller = "Personel"}. Executing action PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip)
+2019-07-28 08:50:16.888 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:17.188 +03:00 [INF] Executing action method PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip) - Validation state: "Valid"
+2019-07-28 08:50:17.188 +03:00 [INF] Executed action method PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.184ms.
+2019-07-28 08:50:17.191 +03:00 [INF] Executing ViewResult, running view PersonelListele.
+2019-07-28 08:50:17.267 +03:00 [INF] Executed ViewResult - view PersonelListele executed in 78.6994ms.
+2019-07-28 08:50:17.267 +03:00 [INF] Executed action PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip) in 380.2062ms
+2019-07-28 08:50:17.268 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip)'
+2019-07-28 08:50:17.287 +03:00 [INF] Sending file. Request path: '/images/logo.png'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/images/logo.png'
+2019-07-28 08:50:17.288 +03:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/css/style.css'
+2019-07-28 08:50:17.287 +03:00 [INF] Sending file. Request path: '/css/navbar.css'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/css/navbar.css'
+2019-07-28 08:50:17.311 +03:00 [INF] Sending file. Request path: '/js/employee-list-scripts.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/js/employee-list-scripts.js'
+2019-07-28 08:50:17.311 +03:00 [INF] Sending file. Request path: '/js/table-events.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/js/table-events.js'
+2019-07-28 08:50:17.311 +03:00 [INF] Sending file. Request path: '/js/table-ops.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/js/table-ops.js'
+2019-07-28 08:50:17.311 +03:00 [INF] Sending file. Request path: '/js/FileSaver.min.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/js/FileSaver.min.js'
+2019-07-28 08:50:17.316 +03:00 [INF] Sending file. Request path: '/js/xlsx.full.min.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/js/xlsx.full.min.js'
+2019-07-28 08:50:17.589 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip)'
+2019-07-28 08:50:17.589 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip)'
+2019-07-28 08:50:17.597 +03:00 [INF] Route matched with {action = "GorevOzeti", controller = "Personel"}. Executing action PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip)
+2019-07-28 08:50:17.598 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:17.598 +03:00 [INF] Executing action method PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip) with arguments (["current"]) - Validation state: "Valid"
+2019-07-28 08:50:17.600 +03:00 [INF] Route matched with {action = "PersonelListeleAsync", controller = "Personel"}. Executing action PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip)
+2019-07-28 08:50:17.601 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:17.687 +03:00 [INF] Executing action method PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip) with arguments (["current","PersonelTakip.Core.IQueryObject"]) - Validation state: "Valid"
+2019-07-28 08:50:17.947 +03:00 [INF] Executed action method PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 348.97950000000003ms.
+2019-07-28 08:50:17.949 +03:00 [INF] Executed action method PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 261.4373ms.
+2019-07-28 08:50:17.952 +03:00 [INF] Executing ObjectResult, writing value of type 'PersonelTakip.Controllers.Resources.EmployeeListSummaryResource'.
+2019-07-28 08:50:17.952 +03:00 [INF] Executing ObjectResult, writing value of type 'PersonelTakip.Controllers.Resources.PersonelListResource'.
+2019-07-28 08:50:17.983 +03:00 [INF] Executed action PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip) in 384.1514ms
+2019-07-28 08:50:17.983 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip)'
+2019-07-28 08:50:17.989 +03:00 [INF] Executed action PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip) in 388.6057ms
+2019-07-28 08:50:17.989 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip)'
+2019-07-28 08:50:39.434 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PuantajController.AylikPuantaj (PersonelTakip)'
+2019-07-28 08:50:39.441 +03:00 [INF] Route matched with {action = "AylikPuantaj", controller = "Puantaj"}. Executing action PersonelTakip.Controllers.PuantajController.AylikPuantaj (PersonelTakip)
+2019-07-28 08:50:39.441 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:39.444 +03:00 [INF] Executing action method PersonelTakip.Controllers.PuantajController.AylikPuantaj (PersonelTakip) - Validation state: "Valid"
+2019-07-28 08:50:39.747 +03:00 [INF] Executed action method PersonelTakip.Controllers.PuantajController.AylikPuantaj (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.ViewResult in 302.8919ms.
+2019-07-28 08:50:39.750 +03:00 [INF] Executing ViewResult, running view AylikPuantaj.
+2019-07-28 08:50:39.891 +03:00 [INF] Executed ViewResult - view AylikPuantaj executed in 143.63070000000002ms.
+2019-07-28 08:50:39.891 +03:00 [INF] Executed action PersonelTakip.Controllers.PuantajController.AylikPuantaj (PersonelTakip) in 449.8364ms
+2019-07-28 08:50:39.891 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PuantajController.AylikPuantaj (PersonelTakip)'
+2019-07-28 08:50:39.917 +03:00 [INF] Sending file. Request path: '/js/monthly-tally-script.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/js/monthly-tally-script.js'
+2019-07-28 08:50:40.149 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PuantajController.HesaplamaGoreveGore (PersonelTakip)'
+2019-07-28 08:50:40.149 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PuantajController.MonthlyTally (PersonelTakip)'
+2019-07-28 08:50:40.157 +03:00 [INF] Route matched with {action = "HesaplamaGoreveGore", controller = "Puantaj"}. Executing action PersonelTakip.Controllers.PuantajController.HesaplamaGoreveGore (PersonelTakip)
+2019-07-28 08:50:40.157 +03:00 [INF] Route matched with {action = "MonthlyTally", controller = "Puantaj"}. Executing action PersonelTakip.Controllers.PuantajController.MonthlyTally (PersonelTakip)
+2019-07-28 08:50:40.157 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:40.157 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:40.158 +03:00 [INF] Executing action method PersonelTakip.Controllers.PuantajController.HesaplamaGoreveGore (PersonelTakip) with arguments (["7","2019"]) - Validation state: "Valid"
+2019-07-28 08:50:40.160 +03:00 [INF] Executing action method PersonelTakip.Controllers.PuantajController.MonthlyTally (PersonelTakip) with arguments (["2019","7","PersonelTakip.Core.IQueryObject"]) - Validation state: "Valid"
+2019-07-28 08:50:40.311 +03:00 [INF] Executed action method PersonelTakip.Controllers.PuantajController.MonthlyTally (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 150.4186ms.
+2019-07-28 08:50:40.311 +03:00 [INF] Executing ObjectResult, writing value of type 'PersonelTakip.Controllers.Resources.MonthlyTallyResource'.
+2019-07-28 08:50:40.313 +03:00 [INF] Executed action method PersonelTakip.Controllers.PuantajController.HesaplamaGoreveGore (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 154.6226ms.
+2019-07-28 08:50:40.313 +03:00 [INF] Executing ObjectResult, writing value of type 'PersonelTakip.Controllers.Resources.HesaplamalarResource'.
+2019-07-28 08:50:40.331 +03:00 [INF] Executed action PersonelTakip.Controllers.PuantajController.HesaplamaGoreveGore (PersonelTakip) in 173.9138ms
+2019-07-28 08:50:40.331 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PuantajController.HesaplamaGoreveGore (PersonelTakip)'
+2019-07-28 08:50:40.412 +03:00 [INF] Executed action PersonelTakip.Controllers.PuantajController.MonthlyTally (PersonelTakip) in 254.41310000000001ms
+2019-07-28 08:50:40.412 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PuantajController.MonthlyTally (PersonelTakip)'
+2019-07-28 08:50:48.680 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip)'
+2019-07-28 08:50:48.680 +03:00 [INF] Route matched with {action = "PersonelListele", controller = "Personel"}. Executing action PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip)
+2019-07-28 08:50:48.680 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:48.680 +03:00 [INF] Executing action method PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip) - Validation state: "Valid"
+2019-07-28 08:50:48.680 +03:00 [INF] Executed action method PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.016ms.
+2019-07-28 08:50:48.680 +03:00 [INF] Executing ViewResult, running view PersonelListele.
+2019-07-28 08:50:48.681 +03:00 [INF] Executed ViewResult - view PersonelListele executed in 1.098ms.
+2019-07-28 08:50:48.682 +03:00 [INF] Executed action PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip) in 1.7541ms
+2019-07-28 08:50:48.682 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PersonelController.PersonelListele (PersonelTakip)'
+2019-07-28 08:50:48.905 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip)'
+2019-07-28 08:50:48.905 +03:00 [INF] Route matched with {action = "PersonelListeleAsync", controller = "Personel"}. Executing action PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip)
+2019-07-28 08:50:48.905 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:48.906 +03:00 [INF] Executing action method PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip) with arguments (["current","PersonelTakip.Core.IQueryObject"]) - Validation state: "Valid"
+2019-07-28 08:50:48.915 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip)'
+2019-07-28 08:50:48.915 +03:00 [INF] Route matched with {action = "GorevOzeti", controller = "Personel"}. Executing action PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip)
+2019-07-28 08:50:48.916 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:48.916 +03:00 [INF] Executing action method PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip) with arguments (["current"]) - Validation state: "Valid"
+2019-07-28 08:50:48.950 +03:00 [INF] Executed action method PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 44.2961ms.
+2019-07-28 08:50:48.951 +03:00 [INF] Executing ObjectResult, writing value of type 'PersonelTakip.Controllers.Resources.PersonelListResource'.
+2019-07-28 08:50:48.961 +03:00 [INF] Executed action method PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 44.8286ms.
+2019-07-28 08:50:48.962 +03:00 [INF] Executing ObjectResult, writing value of type 'PersonelTakip.Controllers.Resources.EmployeeListSummaryResource'.
+2019-07-28 08:50:48.962 +03:00 [INF] Executed action PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip) in 46.3142ms
+2019-07-28 08:50:48.962 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PersonelController.GorevOzeti (PersonelTakip)'
+2019-07-28 08:50:48.966 +03:00 [INF] Executed action PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip) in 60.7704ms
+2019-07-28 08:50:48.966 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PersonelController.PersonelListeleAsync (PersonelTakip)'
+2019-07-28 08:50:49.547 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PuantajController.KisiselPuantaj (PersonelTakip)'
+2019-07-28 08:50:49.553 +03:00 [INF] Route matched with {action = "KisiselPuantaj", controller = "Puantaj"}. Executing action PersonelTakip.Controllers.PuantajController.KisiselPuantaj (PersonelTakip)
+2019-07-28 08:50:49.553 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:49.554 +03:00 [INF] Executing action method PersonelTakip.Controllers.PuantajController.KisiselPuantaj (PersonelTakip) with arguments (["3944"]) - Validation state: "Valid"
+2019-07-28 08:50:49.724 +03:00 [INF] Executed action method PersonelTakip.Controllers.PuantajController.KisiselPuantaj (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.ViewResult in 169.7671ms.
+2019-07-28 08:50:49.727 +03:00 [INF] Executing ViewResult, running view KisiselPuantaj.
+2019-07-28 08:50:49.970 +03:00 [INF] Executed ViewResult - view KisiselPuantaj executed in 246.4263ms.
+2019-07-28 08:50:49.972 +03:00 [INF] Executed action PersonelTakip.Controllers.PuantajController.KisiselPuantaj (PersonelTakip) in 418.8988ms
+2019-07-28 08:50:49.976 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PuantajController.KisiselPuantaj (PersonelTakip)'
+2019-07-28 08:50:49.992 +03:00 [INF] Sending file. Request path: '/js/annual-tally-scripts.js'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/js/annual-tally-scripts.js'
+2019-07-28 08:50:50.038 +03:00 [INF] Sending file. Request path: '/images/personel.png'. Physical path: '/Users/seyf/Documents/Projeler/Puantaj/sc2/wwwroot/images/personel.png'
+2019-07-28 08:50:50.230 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PuantajController.AnnualTallyAsync (PersonelTakip)'
+2019-07-28 08:50:50.238 +03:00 [INF] Route matched with {action = "AnnualTallyAsync", controller = "Puantaj"}. Executing action PersonelTakip.Controllers.PuantajController.AnnualTallyAsync (PersonelTakip)
+2019-07-28 08:50:50.238 +03:00 [INF] Authorization was successful.
+2019-07-28 08:50:50.239 +03:00 [INF] Executing action method PersonelTakip.Controllers.PuantajController.AnnualTallyAsync (PersonelTakip) with arguments (["3944","2019"]) - Validation state: "Valid"
+2019-07-28 08:50:50.390 +03:00 [INF] Executed action method PersonelTakip.Controllers.PuantajController.AnnualTallyAsync (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 150.7388ms.
+2019-07-28 08:50:50.390 +03:00 [INF] Executing ObjectResult, writing value of type 'PersonelTakip.Controllers.Resources.AnnualTallyResource'.
+2019-07-28 08:50:50.410 +03:00 [INF] Executed action PersonelTakip.Controllers.PuantajController.AnnualTallyAsync (PersonelTakip) in 171.3803ms
+2019-07-28 08:50:50.410 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PuantajController.AnnualTallyAsync (PersonelTakip)'
+2019-07-28 08:51:02.373 +03:00 [INF] Executing endpoint 'PersonelTakip.Controllers.PuantajController.PuantajEkleAsync (PersonelTakip)'
+2019-07-28 08:51:02.378 +03:00 [INF] Route matched with {action = "PuantajEkleAsync", controller = "Puantaj"}. Executing action PersonelTakip.Controllers.PuantajController.PuantajEkleAsync (PersonelTakip)
+2019-07-28 08:51:02.378 +03:00 [INF] Authorization was successful.
+2019-07-28 08:51:02.388 +03:00 [INF] Executing action method PersonelTakip.Controllers.PuantajController.PuantajEkleAsync (PersonelTakip) with arguments (["System.Collections.Generic.List`1[PersonelTakip.Controllers.Resources.PuantajEkleResource]"]) - Validation state: "Valid"
+2019-07-28 08:51:02.581 +03:00 [INF] super.admin adlı kullanıcı 3944 id li personel üzerinde şu 4/15/19 12:00:00 AM üzerinde  puantaj değişiklikliği yaptı
+2019-07-28 08:51:02.582 +03:00 [INF] Executed action method PersonelTakip.Controllers.PuantajController.PuantajEkleAsync (PersonelTakip), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 193.5385ms.
+2019-07-28 08:51:02.582 +03:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.JsonResult'.
+2019-07-28 08:51:02.592 +03:00 [INF] Executed action PersonelTakip.Controllers.PuantajController.PuantajEkleAsync (PersonelTakip) in 213.7691ms
+2019-07-28 08:51:02.592 +03:00 [INF] Executed endpoint 'PersonelTakip.Controllers.PuantajController.PuantajEkleAsync (PersonelTakip)'
